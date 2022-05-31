@@ -51,7 +51,7 @@ void delay(unsigned int T_Secs)
 		//    TL0 = 0xFD;
     ET0 = 1;      // Enable Timer0 Interrupt
     TR0 = 1;      // Enable Timer1 Interrupt
-    EA  = 1;      // Enable Global Interrupt bit
+    //EA  = 1;      // Enable Global Interrupt bit will cause failure in compiler memory
 		
 		//T2MOD interrupts
 		ET2 =1;  // enable external interrupt for counter 2 counter by T2 pin input

@@ -64,3 +64,4 @@ Listings
 #disable ext
 .vscode
 *.log
+reciever.uvgui*
