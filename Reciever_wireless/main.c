@@ -49,7 +49,7 @@ void main()
 									}
 									break;		
 				case wait:
-								delay(10);
+								delay(5);
 							  status = Off;
 			  default:	
 								 status = Off;

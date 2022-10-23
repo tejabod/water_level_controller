@@ -10,7 +10,7 @@
 //}
 extern unsigned int flow_count; 
 
-void delay(unsigned int T_Secs)
+unsigned int delay(unsigned int T_Secs)
 	{
 		unsigned int i =0;
 		for (i =0;i<(T_Secs*1000)/50;i++)
@@ -20,6 +20,7 @@ void delay(unsigned int T_Secs)
 		TR0 =0;     // Stop Timer
 		TF0 =0;    // Clear flag
 		}
+		return 1;
 	}
 		
 //	void Clr_IntrFlag_T2()
@@ -70,9 +71,9 @@ unsigned int check_tap_water()
 		P1_3 = 1;         // keep open tap for water
 		for (i=0;i<400;i++)
 		{
-		flow_count++;
 		while (!INT0);
 		while (INT0);
+		flow_count++;
 		}
 		P1_3 = 0;         // keep tap closed
 		EX0 = 0;      // Disble INT0
@@ -82,17 +83,23 @@ unsigned int check_tap_water()
 	
 unsigned int check_flow()
 	{
-		unsigned int i,j;
 		flow_count = 0;
 		EX0 = 1;      // Enable INT0
 		P1_3 =1;         // keep open tap for water
-		for (i=0;i<100;i++)
-		{
-		flow_count++;
-		while (!INT0);
-		while (INT0);
-		}
+			while(!delay(10))
+			{
+			while (!INT0);
+			while (INT0);
+			flow_count++;
+			}
 		EX0 = 0;      // Disble INT0
-		P1_3 =0;         // keep tap closed
+		P1_3 = 0;         // keep tap closed
+		if(flow_count > 2)
+		{
 		return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
