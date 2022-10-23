@@ -1,7 +1,7 @@
 #include<header.h>
 
 unsigned int flow_count; 
-enum Motor_Status{Off, On} status;
+enum Motor_Status{Off, On, wait} status;
 
 //void ext_int_0() interrupt 0
 //{ 
@@ -27,7 +27,11 @@ void main()
 				case Off:
 									//Power_Idle();
 									P1_2 = 0;					// Turn motor off
-									if(P3_3 == 1 && check_tap_water())        // if tank is full go to tank status wait
+									if(P3_3 == 0)
+									{
+										status = wait;
+									}
+									else if(P3_3 == 1 && check_tap_water())        // if tank is full go to tank status wait
 									{
 									status = On;
 									}
@@ -36,14 +40,17 @@ void main()
 				case On:
 								  if(P3_3 == 1)  // if tank is not full go to tank status ON
 									{
-											P1_2 = 1;				// Turn motor on
-											status = On;
+										P1_2 = 1;				// Turn motor on
+										status = On;
 									}
 									else
 									{
 										   status = Off;										
 									}
 									break;		
+				case wait:
+								delay(10);
+							  status = Off;
 			  default:	
 								 status = Off;
 							   break;		
