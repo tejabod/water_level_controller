@@ -65,11 +65,10 @@ unsigned int delay(unsigned int T_Secs)
 	
 unsigned int check_tap_water()
 	{
-		unsigned int i;
 		flow_count = 0;
 		EX0 = 1;      // Enable INT0
 		P1_3 = 1;         // keep open tap for water
-		for (i=0;i<400;i++)
+		while(flow_count < 5)
 		{
 		while (!INT0);
 		while (INT0);
