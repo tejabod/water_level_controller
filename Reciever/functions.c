@@ -8,10 +8,9 @@
 //{
 //		PCON &= ~(1 << 0);
 //}
-extern unsigned int sr_count;
 extern unsigned int flow_count; 
 
-void delay(unsigned int T_Secs)
+unsigned int delay(unsigned int T_Secs)
 	{
 		unsigned int i =0;
 		for (i =0;i<(T_Secs*1000)/50;i++)
@@ -20,12 +19,8 @@ void delay(unsigned int T_Secs)
 		while(TF0==0);  // check overflow condition
 		TR0 =0;     // Stop Timer
 		TF0 =0;    // Clear flag
-		if(sr_count != 0)
-		{
-			sr_count =0;
-			break;
 		}
-		}
+		return 1;
 	}
 		
 //	void Clr_IntrFlag_T2()
@@ -51,7 +46,7 @@ void delay(unsigned int T_Secs)
 		//    TL0 = 0xFD;
     ET0 = 1;      // Enable Timer0 Interrupt
     TR0 = 1;      // Enable Timer1 Interrupt
-    //EA  = 1;      // Enable Global Interrupt bit will cause failure in compiler memory
+    EA  = 1;      // Enable Global Interrupt bit will cause failure in compiler memory
 		
 		//T2MOD interrupts
 		ET2 =1;  // enable external interrupt for counter 2 counter by T2 pin input
@@ -72,11 +67,15 @@ unsigned int check_tap_water()
 	{
 		flow_count = 0;
 		EX0 = 1;      // Enable INT0
-		P1_3 =1;         // keep open tap for water
-		while(flow_count < 5);   // wait untill water flows from opened tap
+		P1_3 = 1;         // keep open tap for water
+		while(flow_count < 400)
+		{
+		while (!INT0);
+		while (INT0);
+		flow_count++;
+		}
 		P1_3 = 0;         // keep tap closed
 		EX0 = 0;      // Disble INT0
-		flow_count = 0;
 		return 1;
 	}
 	
@@ -86,15 +85,21 @@ unsigned int check_flow()
 		flow_count = 0;
 		EX0 = 1;      // Enable INT0
 		P1_3 =1;         // keep open tap for water
-		delay(10);
+			while(!delay(10))
+			{
+			while (!INT0);
+			while (INT0);
+			flow_count++;
+			}
 		EX0 = 0;      // Disble INT0
-		P1_3 =0;         // keep tap closed
-		if (flow_count > 5)
+		P1_3 = 0;         // keep tap closed
+		if(flow_count > 2)
 		{
-			return 1;
+		return 1;
 		}
 		else
 		{
 			return 0;
 		}
 	}
+	

@@ -1,32 +1,25 @@
 #include<header.h>
 
-unsigned int sr_count;
 unsigned int flow_count; 
-enum Motor_Status{Off, On} status;
+enum Motor_Status{Off, On, wait} status;
 
-void ext_int_0() interrupt 0
-{ 
-    flow_count++;
-}
-
-void serial_isr() interrupt 4
-{ 
-  //receivedChar = SBUF; 
-  if(SBUF == 'F') 
-  {
-  sr_count++;       // Clear the count if 'c' is pressed on serial terminal
-  }
-	//receivedChar = ' ';
-  RI = 0;              // Clear the Receive interrupt flag
-}
+//void ext_int_0() interrupt 0
+//{ 
+//		P1_0 = 0;
+//    flow_count++;
+//		P1_0 = 1;
+//}
 
 
 void main()
 {
-	  sr_count = 0;
-		flow_count = 0;
 		status = Off;
+		P0 = 0x00;
+		P1 = 0x00;
+		P2 = 0x00;
+		P3 = 0x00;
 		Enable_SFR();
+	  P1_0 = 0;
     while(1)
     {
 			switch(status)
@@ -34,25 +27,30 @@ void main()
 				case Off:
 									//Power_Idle();
 									P1_2 = 0;					// Turn motor off
-									delay(10);			//wait for reoccuring uart serial in
-									sr_count = 0;
-									if(sr_count == 0 && check_tap_water())        // if tank is not full go to tank status ON
+									if(P3_3 == 0)
+									{
+										status = wait;
+									}
+									else if(P3_3 == 1 && check_tap_water())        // if tank is full go to tank status wait
 									{
 									status = On;
 									}
 									break;
 
 				case On:
-								  if(sr_count == 0 && check_flow() == 1)  // if tank is not full go to tank status ON
+								  if(P3_3 == 1)  // if tank is not full go to tank status ON
 									{
-											P1_2 = 1;				// Turn motor on
-											status = On;
+										P1_2 = 1;				// Turn motor on
+										status = On;
 									}
 									else
 									{
 										   status = Off;										
 									}
 									break;		
+				case wait:
+								delay(10);
+							  status = Off;
 			  default:	
 								 status = Off;
 							   break;		
