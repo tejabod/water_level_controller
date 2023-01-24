@@ -1,0 +1,5 @@
+".\Objects\STARTUP.obj",
+".\Objects\functions.obj",
+".\Objects\main.obj" 
+TO ".\Objects\reciever" 
+PRINT(".\Listings\reciever.m51") RAMSIZE(256) 

@@ -1,0 +1,288 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/24/2023  22:59:33  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\functions.obj, .\Objects\main.obj TO .\Objects\reciever PRI
+>> NT (.\Listings\reciever.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\functions.obj (FUNCTIONS)
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?IMUL)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\reciever (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         ?DT?MAIN
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0067H     UNIT         ?C?LIB_CODE
+            CODE    006AH     0050H     UNIT         ?PR?MAIN?MAIN
+            CODE    00BAH     003CH     UNIT         ?PR?CHECK_FLOW?FUNCTIONS
+            CODE    00F6H     0035H     UNIT         ?PR?_DELAY?FUNCTIONS
+            CODE    012BH     002DH     UNIT         ?PR?ENABLE_SFR?FUNCTIONS
+            CODE    0158H     0028H     UNIT         ?PR?CHECK_TAP_WATER?FUNCTIONS
+            CODE    0180H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\reciever (?C_STARTUP)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?ENABLE_SFR?FUNCTIONS
+  +--> ?PR?CHECK_TAP_WATER?FUNCTIONS
+  +--> ?PR?_DELAY?FUNCTIONS
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\reciever (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/24/2023  22:59:33  PAGE 2
+
+
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0180H         SEGMENT       ?C_C51STARTUP
+  I:000BH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0183H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0180H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0180H         LINE#         133
+  C:0182H         LINE#         134
+  C:0183H         LINE#         135
+  C:0184H         LINE#         136
+  C:0186H         LINE#         185
+  C:0189H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        FUNCTIONS
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  C:00F6H         PUBLIC        _delay
+  B:0090H.3       PUBLIC        P1_3
+  C:012BH         PUBLIC        Enable_SFR
+  B:00A8H.4       PUBLIC        ES
+  C:00BAH         PUBLIC        check_flow
+  B:00B0H.2       PUBLIC        INT0
+  B:00B8H.4       PUBLIC        PS
+  B:00C8H.1       PUBLIC        C_T2
+  C:0158H         PUBLIC        check_tap_water
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.5       PUBLIC        ET2
+  D:008CH         PUBLIC        TH0
+  B:00A8H.0       PUBLIC        EX0
+  D:008DH         PUBLIC        TH1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/24/2023  22:59:33  PAGE 3
+
+
+  B:00A8H.2       PUBLIC        EX1
+  D:00CDH         PUBLIC        TH2
+  D:008AH         PUBLIC        TL0
+  D:00CCH         PUBLIC        TL2
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  -------         PROC          _DELAY
+  D:0002H         SYMBOL        T_Secs
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:00F6H         LINE#         13
+  C:00FAH         LINE#         14
+  C:00FAH         LINE#         15
+  C:00FAH         LINE#         16
+  C:011AH         LINE#         17
+  C:011AH         LINE#         18
+  C:011CH         LINE#         19
+  C:011FH         LINE#         20
+  C:0121H         LINE#         21
+  C:0123H         LINE#         22
+  C:0126H         LINE#         23
+  C:012AH         LINE#         24
+  -------         ENDPROC       _DELAY
+  -------         PROC          ENABLE_SFR
+  C:012BH         LINE#         32
+  C:012BH         LINE#         33
+  C:012BH         LINE#         35
+  C:012EH         LINE#         36
+  C:0131H         LINE#         37
+  C:0134H         LINE#         38
+  C:0136H         LINE#         41
+  C:0138H         LINE#         42
+  C:013BH         LINE#         43
+  C:013DH         LINE#         44
+  C:013FH         LINE#         47
+  C:0141H         LINE#         48
+  C:0143H         LINE#         49
+  C:0145H         LINE#         52
+  C:0147H         LINE#         53
+  C:0149H         LINE#         56
+  C:014CH         LINE#         57
+  C:014FH         LINE#         59
+  C:0152H         LINE#         60
+  C:0155H         LINE#         63
+  C:0157H         LINE#         64
+  -------         ENDPROC       ENABLE_SFR
+  -------         PROC          CHECK_TAP_WATER
+  C:0158H         LINE#         66
+  C:0158H         LINE#         67
+  C:0158H         LINE#         68
+  C:015DH         LINE#         69
+  C:015FH         LINE#         70
+  C:0161H         LINE#         71
+  C:0161H         LINE#         72
+  C:0161H         LINE#         73
+  C:0164H         LINE#         74
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/24/2023  22:59:33  PAGE 4
+
+
+  C:0167H         LINE#         75
+  C:016FH         LINE#         76
+  C:0177H         LINE#         77
+  C:0179H         LINE#         78
+  C:017BH         LINE#         79
+  C:017FH         LINE#         80
+  -------         ENDPROC       CHECK_TAP_WATER
+  -------         PROC          CHECK_FLOW
+  C:00BAH         LINE#         83
+  C:00BAH         LINE#         84
+  C:00BAH         LINE#         85
+  C:00BFH         LINE#         86
+  C:00C1H         LINE#         87
+  C:00C3H         LINE#         88
+  C:00CEH         LINE#         89
+  C:00CEH         LINE#         90
+  C:00D1H         LINE#         91
+  C:00D4H         LINE#         92
+  C:00DCH         LINE#         93
+  C:00DEH         LINE#         94
+  C:00E0H         LINE#         95
+  C:00E2H         LINE#         96
+  C:00EDH         LINE#         97
+  C:00EDH         LINE#         98
+  C:00F2H         LINE#         99
+  C:00F2H         LINE#         101
+  C:00F2H         LINE#         102
+  C:00F5H         LINE#         103
+  C:00F5H         LINE#         104
+  -------         ENDPROC       CHECK_FLOW
+  -------         ENDMOD        FUNCTIONS
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:0090H.0       PUBLIC        P1_0
+  B:0090H.2       PUBLIC        P1_2
+  B:00B0H.3       PUBLIC        P3_3
+  C:006AH         PUBLIC        main
+  D:0008H         PUBLIC        status
+  D:0009H         PUBLIC        flow_count
+  -------         PROC          MAIN
+  C:006AH         LINE#         14
+  C:006AH         LINE#         15
+  C:006AH         LINE#         16
+  C:006DH         LINE#         17
+  C:006FH         LINE#         18
+  C:0071H         LINE#         19
+  C:0073H         LINE#         20
+  C:0075H         LINE#         21
+  C:0078H         LINE#         22
+  C:007AH         LINE#         23
+  C:007AH         LINE#         24
+  C:007AH         LINE#         25
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/24/2023  22:59:33  PAGE 5
+
+
+  C:0086H         LINE#         26
+  C:0086H         LINE#         27
+  C:0086H         LINE#         29
+  C:0088H         LINE#         30
+  C:008BH         LINE#         31
+  C:008BH         LINE#         32
+  C:008EH         LINE#         33
+  C:0090H         LINE#         34
+  C:009AH         LINE#         35
+  C:009AH         LINE#         36
+  C:009AH         LINE#         37
+  C:009AH         LINE#         38
+  C:009CH         LINE#         40
+  C:009CH         LINE#         41
+  C:009FH         LINE#         42
+  C:009FH         LINE#         43
+  C:00A1H         LINE#         44
+  C:00A4H         LINE#         45
+  C:00A6H         LINE#         47
+  C:00A6H         LINE#         48
+  C:00A9H         LINE#         49
+  C:00A9H         LINE#         50
+  C:00ABH         LINE#         51
+  C:00ABH         LINE#         52
+  C:00B2H         LINE#         53
+  C:00B5H         LINE#         54
+  C:00B5H         LINE#         55
+  C:00B8H         LINE#         56
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?IMUL
+  C:0003H         PUBLIC        ?C?IMUL
+  -------         ENDMOD        ?C?IMUL
+
+  -------         MODULE        ?C?UIDIV
+  C:0015H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CHECK_FLOW?FUNCTIONS
+
+Program Size: data=12.0 xdata=0 code=396
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
