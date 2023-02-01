@@ -1,7 +1,7 @@
 #include<header.h>
 
 unsigned int flow_count; 
-unsigned int hour = 12;
+unsigned int hour = 0;
 unsigned int minute = 0;
 unsigned int second = 0;
 //enum Motor_Status{Off, On, wait} status;

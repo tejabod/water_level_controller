@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   FUNCTIONS                                                         01/28/2023 19:40:59 PAGE 1   
+C51 COMPILER V9.60.0.0   FUNCTIONS                                                         01/30/2023 20:44:59 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE FUNCTIONS
@@ -62,7 +62,7 @@ line level    source
   52   1          
   53   1          PS =1;      // set serial interrupt high priority
   54   1        }
-C51 COMPILER V9.60.0.0   FUNCTIONS                                                         01/28/2023 19:40:59 PAGE 2   
+C51 COMPILER V9.60.0.0   FUNCTIONS                                                         01/30/2023 20:44:59 PAGE 2   
 
   55            
   56            
@@ -108,7 +108,7 @@ line level    source
   96          
   97          void turn_on_motor_at_6am() {
   98   1          // Check if it is 6am
-  99   1          if (hour == 6 && minute == 0 && second == 0) 
+  99   1          if (hour == 0 && minute == 0 && second == 10) 
  100   1            {
  101   2            if(check_flow())
  102   2            {
@@ -126,7 +126,7 @@ line level    source
  114   1      }
 
 
-C51 COMPILER V9.60.0.0   FUNCTIONS                                                         01/28/2023 19:40:59 PAGE 3   
+C51 COMPILER V9.60.0.0   FUNCTIONS                                                         01/30/2023 20:44:59 PAGE 3   
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =    275    ----

@@ -96,7 +96,7 @@ void increment_time() {
 
 void turn_on_motor_at_6am() {
     // Check if it is 6am
-    if (hour == 6 && minute == 0 && second == 0) 
+    if (hour == 0 && minute == 0 && second == 10) 
 			{
 			if(check_flow())
 			{
