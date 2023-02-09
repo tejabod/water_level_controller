@@ -1,74 +1,53 @@
 #include<header.h>
 
-extern unsigned int flow_count; 
+unsigned int flow_count; 
 extern unsigned int hour;
 extern unsigned int minute;
 extern unsigned int second;
 
 
-unsigned int delay(unsigned int T_Secs)
-	{
-		unsigned int i =0;
-		for (i =0;i<(T_Secs*1000)/50;i++)
-		{
-		TR0 =1;      // timer start
-		while(TF0==0);  // check overflow condition
-		TR0 =0;     // Stop Timer
-		TF0 =0;    // Clear flag
-		}
-		return 1;
-	}
-		
-	void Enable_SFR()
-	{
-		//init_uart
-		SCON = 0x50;  // Asynchronous mode, 8-bit data and 1-stop bit
-    TMOD = 0x21;  // Timer1 in Mode2 and Timer0 in Mode1
-    TH1 =  0xFD;  // Load timer value for 9600 baudrate
-    TR1 = 1;      // Turn ON the timer for Baud rate generation
-		//init_uart
-		
-    ES  = 1;      // Enable Serial Interrupt
-    P3 |= 0x0c;   // Configure the INT0 & INT1 pins as Inputs
-    EX0 = 1;      // Enable INT0
-    EX1 = 1;      // Enable INT1
-		//    TH0 = 0x4B;   // Load timer value for 50ms
-		//    TL0 = 0xFD;
-    ET0 = 1;      // Enable Timer0 Interrupt
-    TR0 = 1;      // Enable Timer1 Interrupt
-    EA  = 1;      // Enable Global Interrupt bit will cause failure in compiler memory
-		
-		//T2MOD interrupts
-		ET2 =1;  // enable external interrupt for counter 2 counter by T2 pin input
-		C_T2 =1;	 // select counter which 
-
-		//timer registers
-	  TH0 = 0X4B; 	 //initial value for 50ms
-		TL0 = 0XFD;
-		// Counter 2 reg values which will increment with T2 pin
-		TH2 = 0xFF;
-		TL2 = 0xFD;
-		//timer registers
-		
-    PS =1;			// set serial interrupt high priority
-	}
+//unsigned int delay(unsigned int T_Secs)
+//	{
+//		unsigned int i =0;
+//		for (i =0;i<(T_Secs*1000)/50;i++)
+//		{
+//		TR0 =1;      // timer start
+//		while(TF0==0);  // check overflow condition
+//		TR0 =0;     // Stop Timer
+//		TF0 =0;    // Clear flag
+//		}
+//		return 1;
+//	}
+//		
 	
+	
+void delay(unsigned int T_Secs)
+{
+unsigned int count=0;
+ while(count!=500*T_Secs)
+  {
+   TMOD=0x01;  //16-bit timer0 selected
+   TH0=0xF8;   // Loading high byte in TH
+   TL0=0xCC;   // Loaded low byte in TL
+   TR0=1;      // Running the timer
+    while(!TF0);   //Checking the timer flag register if it is not equal to 1 
+   TR0 = 0;      // If TF0=1 stop the timer
+   TF0 = 0;      // Clear the Timer Flag bit for next calculation
+   count++;
+  }
+
+}
 	
 unsigned int check_flow()
 	{
 		flow_count = 0;
 		EX0 = 1;      // Enable INT0
 		P1_3 =1;         // keep open tap for water
-			while(!delay(10))
-			{
-			while (!INT0);
-			while (INT0);
-			flow_count++;
-			}
+		delay(2);
+		second=+2;
 		EX0 = 0;      // Disble INT0
 		P1_3 = 0;         // keep tap closed
-		second=second+10;
-		if(flow_count > 2)
+		if(flow_count > 3)
 		{
 		return 1;
 		}
