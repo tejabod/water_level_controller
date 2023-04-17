@@ -1,7 +1,7 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/24/2023  22:59:33  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    04/17/2023  17:42:32  PAGE 1
 
 
-BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
 C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\functions.obj, .\Objects\main.obj TO .\Objects\reciever PRI
 >> NT (.\Listings\reciever.m51) RAMSIZE (256)
 
@@ -35,8 +35,8 @@ LINK MAP OF MODULE:  .\Objects\reciever (?C_STARTUP)
             CODE    00BAH     003CH     UNIT         ?PR?CHECK_FLOW?FUNCTIONS
             CODE    00F6H     0035H     UNIT         ?PR?_DELAY?FUNCTIONS
             CODE    012BH     002DH     UNIT         ?PR?ENABLE_SFR?FUNCTIONS
-            CODE    0158H     0028H     UNIT         ?PR?CHECK_TAP_WATER?FUNCTIONS
-            CODE    0180H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0158H     0026H     UNIT         ?PR?CHECK_TAP_WATER?FUNCTIONS
+            CODE    017EH     000CH     UNIT         ?C_C51STARTUP
 
 
 
@@ -59,13 +59,13 @@ SEGMENT
 SYMBOL TABLE OF MODULE:  .\Objects\reciever (?C_STARTUP)
 
   VALUE           TYPE          NAME
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/24/2023  22:59:33  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/17/2023  17:42:32  PAGE 2
 
 
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:0180H         SEGMENT       ?C_C51STARTUP
+  C:017EH         SEGMENT       ?C_C51STARTUP
   I:000BH         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
@@ -75,7 +75,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\reciever (?C_STARTUP)
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:0183H         SYMBOL        IDATALOOP
+  C:0181H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -84,18 +84,18 @@ SYMBOL TABLE OF MODULE:  .\Objects\reciever (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:0180H         SYMBOL        STARTUP1
+  C:017EH         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:0180H         LINE#         133
-  C:0182H         LINE#         134
-  C:0183H         LINE#         135
-  C:0184H         LINE#         136
-  C:0186H         LINE#         185
-  C:0189H         LINE#         196
+  C:017EH         LINE#         133
+  C:0180H         LINE#         134
+  C:0181H         LINE#         135
+  C:0182H         LINE#         136
+  C:0184H         LINE#         185
+  C:0187H         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        FUNCTIONS
@@ -119,7 +119,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\reciever (?C_STARTUP)
   D:008CH         PUBLIC        TH0
   B:00A8H.0       PUBLIC        EX0
   D:008DH         PUBLIC        TH1
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/24/2023  22:59:33  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/17/2023  17:42:32  PAGE 3
 
 
   B:00A8H.2       PUBLIC        EX1
@@ -179,15 +179,15 @@ SYMBOL TABLE OF MODULE:  .\Objects\reciever (?C_STARTUP)
   C:0161H         LINE#         72
   C:0161H         LINE#         73
   C:0164H         LINE#         74
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/24/2023  22:59:33  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/17/2023  17:42:32  PAGE 4
 
 
   C:0167H         LINE#         75
   C:016FH         LINE#         76
-  C:0177H         LINE#         77
-  C:0179H         LINE#         78
-  C:017BH         LINE#         79
-  C:017FH         LINE#         80
+  C:0175H         LINE#         77
+  C:0177H         LINE#         78
+  C:0179H         LINE#         79
+  C:017DH         LINE#         80
   -------         ENDPROC       CHECK_TAP_WATER
   -------         PROC          CHECK_FLOW
   C:00BAH         LINE#         83
@@ -239,7 +239,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\reciever (?C_STARTUP)
   C:007AH         LINE#         23
   C:007AH         LINE#         24
   C:007AH         LINE#         25
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/24/2023  22:59:33  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/17/2023  17:42:32  PAGE 5
 
 
   C:0086H         LINE#         26
@@ -284,5 +284,5 @@ SYMBOL TABLE OF MODULE:  .\Objects\reciever (?C_STARTUP)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?CHECK_FLOW?FUNCTIONS
 
-Program Size: data=12.0 xdata=0 code=396
+Program Size: data=12.0 xdata=0 code=394
 LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -68,7 +68,7 @@ unsigned int check_tap_water()
 		flow_count = 0;
 		EX0 = 1;      // Enable INT0
 		P1_3 = 1;         // keep open tap for water
-		while(flow_count < 400)
+		while(flow_count < 20)
 		{
 		while (!INT0);
 		while (INT0);
